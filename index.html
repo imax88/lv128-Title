@@ -1,112 +1,101 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>HttpListener</title>
+<meta charset="utf-8">
+<link href="css/style.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+<script src="js/jquery-2.1.1.min.js"></script>
+<title>YAPS</title>
+<script>
+	$(document).ready(function(){
+		
+		setTimeout(function () {
+		$('.question').animate({"bottom": "0"}, "1000");
+		}, 1000);
+		
+		setTimeout(function () {
+		$('.answer_a').animate({"right": "0"}, "600");
+		$('.answer_a').animate({"right": "5%"}, "600");
+		}, 1500);
+		
+		setTimeout(function () {
+		$('.answer_b').animate({"right": "0"}, "600");
+		$('.answer_b').animate({"right": "25%"}, "600");
+		}, 2400);
+			
+		setTimeout(function () {
+		$('.answer_c').animate({"right": "0"}, "600");
+		$('.answer_c').animate({"right": "12%"}, "600");
+		}, 2100);
+		
+		setTimeout(function () {
+		$('.answer_d').animate({"right": "0"}, "600");
+		$('.answer_d').animate({"right": "18%"}, "600");
+		}, 1800);
+
+		setTimeout(function(){ 
+		$('.answer').css('display', 'none')
+		 }, 5000);
+		 setTimeout(function () {
+			$('.api').css('display', 'block')
+		},6000 );	
+
+	});
+</script>
+
+<script>
+	$(document).ready(function(){
+	
+	});
+</script>
+
 </head>
 
 <body>
-	<style type="text/css">
-		body{
-			background-image: url('bg_dotted.png');
-		}
-		h2{
-			text-align: center;
-			color: #6f5499;
-		}
-		h4{
-			color: #6f5499;
-		}
-		.container{
-			width: 50%;
-		}
-		.centred{
-			margin: 4% auto;
-		}
-		.container p{
-			font-size: 16px;
-			line-height: 1.5;
-			color:#555555;
-			font-family: Helvetica, Arial, sans-serif;
-		}
-		.container a{
-			color:#337ab7; 
-		}
-		.container span{
-			font-style: italic;
-		}
-		.language_switcher{
-			display: block;
-		}
-		.language_switcher a{
-			text-decoration: none;
-			float: right;
-		}
-		.language_switcher a:hover{
-			text-decoration: underline;
-		}
-		 table tr{
-			padding: 2%;
-		}
-		table td{
-			padding: 0.5%;
-		}
-	</style>
-	<div class='container centred'>
-		<!-- <div class='language_switcher'>
-			<p><a href="">EN&nbsp;</a>&nbsp; <a href="">UA&nbsp;</a></p>
-		</div> -->
-		<table border="1">
-			<tr>
-				<td>Method Name:</td>
-				<td>Server host</td>
-			</tr>
-			<tr>
-				<td></td>
-				<th>hl.lv128.tk:8012</th>
+	<div class="wrapper">
+		<div class='switcher'>
+		    <div class="box">
+		    	<div class="gameshowtitle">
+					<p>Lv128 UI/LAMP</p>
+		        </div>
+		        <div class="question">
+		        	<p>HTTP LISTENER API</p>
+		        </div>
+				<!--  <div class="scoreboard">
+		            <p>Biff<span>0</span></p>
+		            <p>Albert<span>10</span></p>       
+		        </div>  -->   	     
+		        <div class="answer">
+		            <p><a href="#" class="answer_a"><span class="wronganswer">Y-et</span></a></p>
+		            <p><a href="#" class="answer_b"><span class="wronganswer">A-nother</span></a></p>
+		            <p><a href="#" class="answer_c"><span class="correctanswer">P-ost</span></a></p>
+		            <p><a href="#" class="answer_d"><span class="wronganswer">S-ervice</span></a></p>
+				</div>
 
-			</tr>
-			<tr>
-				<td>GET</td>
-				<td>GET request from http:lv128.tk:8012/msg where: 8012 -port, msg- message.Write message to log file,Return HTTP 200.</td>
-			</tr>
-			<tr>
-				<td>POST</td>
-				<td>POST request from http:lv128.tk:8012/msg where:8012 -port,msg- message,Write message to log file,Generate message UUID,Put triplet uuid:token:message to file</td>
-			</tr>
+				<table border="1" class="api">
+					<tr>
+						<td>Method Name:</td>
+						<td>Server host</td>
+					</tr>
+					<tr>
+						<td></td>
+						<th>hl.lv128.tk:8012</th>
+
+					</tr>
+					<tr>
+						<td>GET</td>
+						<td>GET request from http:lv128.tk:8012/msg where: 8012 -port, msg- message.Write message to log file,Return HTTP 200.</td>
+					</tr>
+					<tr>
+						<td>POST</td>
+						<td>POST request from http:lv128.tk:8012/msg where:8012 -port,msg- message,Write message to log file,Generate message UUID,Put triplet uuid:token:message send to RabbitMQ (for VALIDATION) and then to Notification Dispatcher</td>
+					</tr>
 		</table>
-		<!-- <h2>HttpListener</h2>
-		<p>
-			Я реалізував компонетнт <span>HttpListener</span> ,який прослуховує <a href="https://ru.wikipedia.org/wiki/HTTP#GET" target='_blank'>GET</a> i <a href="https://ru.wikipedia.org/wiki/POST_(HTTP)" target='_blank'>POST</a> 
-			запити, які надсилаються від клієнта.
-		</p>
-		<p>
-			Дані запити мають містити в собі <span>uuid:token:message</span> -згенерований <span>uuid</span>, <span>token</span> -який присвоюєтья кожному користувачу і безпосередньо повідомлення <span>message.</span>
-		</p>
-		<p>
-			Доний компонет був реалізований з використанням <a href="https://twistedmatrix.com/trac/" target='_blank'>Twisted framework-</a>
-			це  обєктно орієнтований мережевий <span>Framework</span> який написаний на <a href="https://www.python.org/" target='_blank'>Python.</a> 
-			В даному фреймворку  за допомогою класів реалізована взаємодія з основними мережевими протоколами.
-
-		</p>
-		<h4>
-			Демонстрація  безпосередньйо коду :<a href="https://github.com/alive-web/HTTPListener/blob/master/http_listener.py" target='_blank'>github HttpListener</a>
-		</h4>
-		<p>
-			Імпортуєця  модуль який генерує <span>uuid</span> для кожного користувача 
-			Імпортуєця модуль сервера -<span>Framework</span> містить в собі сервер який стартує для того щоб можна було взаємодіяти з мережевими протоколами. 
-			Імпортуєця <span>Twisted Logging</span> -для запису логів і моніторингу роботи  <span>HttpListener</span>-ра
-			Імпортуєця клас для взаємодії з потрібним нами протоколом <a href="https://ru.wikipedia.org/wiki/HTTP" target='_blank'>Http.</a> 		
-		</p>
-		<p>
-			Оголошений клас  <span>HttpListener</span> і два метода класу <span>render_GET</span>,<span>render_POST</span> в яких реалізовано безпосередньйо прослуховування і обробка <span>GET</span> i <span>POST</span> запитів . 
-		</p>
-		<p>
-			Метод <span>GET</span> приймає запит ,встановлює заголовок ,і з масиву args бере параметр msg який і містить повідомлення яке відправив користувач,записує все в файл логування відправляє "OK".
-		</p>
-		<p>
-			Метод <span>POST</span> приймає запит ,встановлює заголовок , із масиву args бере параметр msg який містить повідомлення відправлене методом <span>POST</span> ,знову з масиву args бере <span>token</span> і формує  коректрий формат запиту який містить <span>hesh</span> -для даного повідомлення, <span>token</span> для відповідного користувача і безпосередньйо пвідомлення -і записує коректно сформований запив в кінець файлу <span>validation_queue.log</span> — який в подальшій розробці буде взаємодіяти з  вузлом валідації і також все записуєця у файл логування.
-		</p> -->
+		        <!-- <div class="logo"> 
+		        </div>
+		         -->
+		    </div>  
+		</div> 
 	</div>
 </body>
 </html>
